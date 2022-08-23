@@ -103,9 +103,9 @@ func PrepareMattermostJobTemplate(name, namespace string, baseDeployment *appsv1
 	// Override values for job-specific behavior.
 	job.Spec.Template.Spec.RestartPolicy = corev1.RestartPolicyNever
 	for i := range job.Spec.Template.Spec.Containers {
-		if job.Spec.Template.Spec.Containers[i].Name != "mattermost" { continue }
-		
-		job.Spec.Template.Spec.Containers[i].Command = []string{"mattermost", "version"}
+		if job.Spec.Template.Spec.Containers[i].Name == "mattermost" {
+			job.Spec.Template.Spec.Containers[i].Command = []string{"mattermost", "version"}
+		}
 	}
 
 	return job
