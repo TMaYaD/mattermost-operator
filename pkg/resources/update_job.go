@@ -104,7 +104,7 @@ func PrepareMattermostJobTemplate(name, namespace string, baseDeployment *appsv1
 	job.Spec.Template.Spec.RestartPolicy = corev1.RestartPolicyNever
 	for i := range job.Spec.Template.Spec.Containers {
 		if job.Spec.Template.Spec.Containers[i].Name == "mattermost" {
-			job.Spec.Template.Spec.Containers[i].Command = []string{"mattermost", "version"}
+			job.Spec.Template.Spec.Containers[i].Args = []string{"version"}
 		}
 	}
 
